@@ -228,6 +228,7 @@ export class MysqlUserRepository implements UserRepository{
             // Retornamos una nueva instancia de User con los datos obtenidos
             return new User(row.uuid, row.name, row.last_name,row.phone_number, row.email, row.password,row.status);
         } catch (error) {
+            
             console.error(error);
             return null; // En caso de error, retornamos null
         }
