@@ -10,37 +10,22 @@ export class CreateUserController {
 
         try {
 
-            let {
-                name,
-                last_name,
-                nick_name,
-                phone_number,
-                email,
-                password,
-            } = req.body
+            let {name,last_name,phone_number,email,password,} = req.body
             console.log(req.body)
 
             let registerUser = await this.createUserUseCase.run(
                 name,
                 last_name,
-                nick_name,
                 phone_number,
                 email,
                 password,
             )
-            if (registerUser instanceof Error) {
-                return res.status(409).send({
-                    status: "error",
-                    message: registerUser.message
-                });
-            }
             if (registerUser instanceof User) {
                 return res.status(201).send({
                     status: "succes",
                     data: {
                         id: registerUser.uuid,
                         name: registerUser.name,
-                        nick_name: registerUser.nick_name,
                         email: registerUser.email,
                         phone_number: registerUser.phone_number
                     }

@@ -18,11 +18,6 @@ export class ValidatorCreateUser {
 
     @IsNotEmpty()
     @IsString()
-    @Length(1, 12)
-    public nick_name: string;
-
-    @IsNotEmpty()
-    @IsString()
     @Length(10) 
     public phone_number: string;
 
@@ -43,7 +38,6 @@ export class ValidatorCreateUser {
         uuid: string,
         name: string,
         last_name: string,
-        nick_name:string,
         phone_number: string,
         email: string,
         password: string,
@@ -52,7 +46,6 @@ export class ValidatorCreateUser {
         this.uuid = uuid;
         this.name = name;
         this.last_name = last_name;
-        this.nick_name = nick_name;
         this.phone_number = phone_number;
         this.email = email;
         this.password = password;
@@ -85,10 +78,6 @@ export class ValidatorUpdate {
     @Length(1, 100)
     public last_name?: string;
 
-    @IsOptional()
-    @IsString()
-    @Length(1, 12)
-    public nick_name?: string;
 
     @IsOptional()
     @IsString()
@@ -110,7 +99,6 @@ export class ValidatorUpdate {
         this.uuid = uuid;
         this.name = name;
         this.last_name = last_name;
-        this.nick_name = nick_name;
         this.phone_number = phone_number
         this.email = email;
     }

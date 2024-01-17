@@ -5,7 +5,6 @@ export interface UserRepository{
         uuid: string,
         name: string,
         last_name: string,
-        nick_name: string,
         phone_number: string,
         email: string,
         password: string,
@@ -20,7 +19,6 @@ export interface UserRepository{
         uuid: string,
         name?: string,
         last_name?: string,
-        nick_name?: string,
         phone_number?: string,
         email?: string,
     ): Promise<User | null>

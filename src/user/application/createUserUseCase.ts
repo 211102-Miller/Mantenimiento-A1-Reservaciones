@@ -11,7 +11,6 @@ export class CreateUserUseCase{
     async run(
         name: string,
         last_name: string,
-        nick_name: string,
         phone_number: string,
         email: string,
         password:string
@@ -22,7 +21,7 @@ export class CreateUserUseCase{
         
  
          //validator-class
-         let post = new ValidatorCreateUser(miuuid, name, last_name, nick_name,phone_number, email, password, status);
+         let post = new ValidatorCreateUser(miuuid, name, last_name,phone_number, email, password, status);
          const validation = await validate(post)
          if (validation.length > 0) {
              throw new Error(JSON.stringify(validation));
@@ -34,7 +33,6 @@ export class CreateUserUseCase{
                  miuuid,
                  name,
                  last_name,
-                 nick_name,
                  phone_number,
                  email,
                  hashPassword,

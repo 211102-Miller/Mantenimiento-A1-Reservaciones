@@ -10,12 +10,11 @@ export class GetUserByFilterController {
             let {
                 filter,
                 name,
-                nick_name,
                 phone_number,
                 email,
             } = req.params
 
-            let getUserByFilter = await this.getUserByFilterUseCase.run(filter as string, email as string, name as string, nick_name as string,phone_number as string)
+            let getUserByFilter = await this.getUserByFilterUseCase.run(filter as string, email as string, name as string,phone_number as string)
 
             if(getUserByFilter){
                 return res.status(200).send({

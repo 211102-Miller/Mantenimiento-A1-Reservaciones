@@ -10,12 +10,11 @@ export class UpdateUserByIdUseCase{
         uuid: string,
         name?: string,
         last_name?: string,
-        nick_name?:string,
         phone_number?: string,
         email?: string,
         ): Promise<User | null> {
 
-        let post = new ValidatorUpdate(uuid,name,last_name,nick_name,phone_number,email)
+        let post = new ValidatorUpdate(uuid,name,last_name,phone_number,email)
         const validation = await validate(post)
         console.log(validation.length)
         if (validation.length > 0) {
@@ -23,7 +22,7 @@ export class UpdateUserByIdUseCase{
         }
         
         try {
-            const updateUserById = await this.userRepository.updateUserById(uuid,name,last_name,nick_name,phone_number,email);
+            const updateUserById = await this.userRepository.updateUserById(uuid,name,last_name,phone_number,email);
             return updateUserById;
         } catch (error) {
             return null;
