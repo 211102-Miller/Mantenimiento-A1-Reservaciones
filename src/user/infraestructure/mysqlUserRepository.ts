@@ -10,16 +10,24 @@ export class MysqlUserRepository implements UserRepository{
 
     async createUser(uuid: string, name: string, last_name: string, phone_number: string, email: string, password: string, status: boolean): Promise<string | User | Error | null> {
         try {
-           
-            let sql = "INSERT INTO users(uuid, name, last_name,phone_number ,email, password,status) VALUES (?, ?, ?, ? , ?, ?, ?)";
+            let sql = "INSERT INTO users(uuid, name, last_name, phone_number, email, password, status) VALUES ($1, $2, $3, $4, $5, $6, $7)";
             const params: any[] = [uuid, name, last_name, phone_number, email, password, status];
-            const [result]: any = await query(sql, params);
-            return new User(uuid, name, last_name,phone_number, email, password, status);
+
+            console.log('Executing SQL:', sql);
+            console.log('Parameters:', params);
+
+            const result = await query(sql, params);
+            console.log('Query Result:', result);
+
+            // Asegúrate de que result tenga el formato esperado antes de intentar desestructurarlo
+
+            return new User(uuid, name, last_name, phone_number, email, password, status);
         } catch (error) {
-            console.error("Error adding review:", error);
+            console.error("Error adding user:", error);
             return error as Error;
         }
     }
+
     async getAllUsers(): Promise<User[] | null> {
         try {
             const sql = "SELECT * FROM users";
