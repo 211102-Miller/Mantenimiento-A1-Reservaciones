@@ -5,6 +5,7 @@ import { userRoutes } from "./user/infraestructure/userRoutes";
 import { hotelRoutes } from "./hotel/infraestructure/hotelRoutes";
 
 
+import { hotelRoutes } from "./hotel/infraestructure/hotelRoutes";
 
 
 

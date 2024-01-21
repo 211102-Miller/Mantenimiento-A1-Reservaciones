@@ -1,34 +1,34 @@
-    // Aquí se ha corregido el nombre
-    import mysql from "mysql2/promise";
-    import { Signale } from "signale";
+import { Pool } from "pg";
+import { Signale } from "signale";
 
-    const signale = new Signale();// Aquí se ha corregido el nombre
+const signale = new Signale();
 
+const config = {
+    user: 'angelito',
+    host: 'localhost',
+    database: 'mantenimiento',
+    password: '211125',
+    port: 5432, // Puerto predeterminado de PostgreSQL
+    max: 10, // Número máximo de conexiones en el pool
+};
 
-    const config = {
-        host:'localhost',
-        port: 3306, // // Agrega el puerto de la base de datos
-        user:'root',
-        database:'reservaciones',
-        password:'Miller2001',
-        waitForConnections: true,
-        connectionLimit: 10,
-    };
+// Crear el pool de conexiones
+const pool = new Pool(config);
 
+export async function query(sql: string, params?: any[]) {
+    try {
+        const client = await pool.connect();
+        signale.success("Conexión exitosa a la BD");
 
-    // Crear el pool de conexiones
-    const pool = mysql.createPool(config);
+        // Utiliza el método query del cliente para ejecutar consultas
+        const result = await client.query(sql, params);
 
-    export async function query(sql: string, params?: any[]) {
-        try {
-            const conn = await pool.getConnection();
-            signale.success("Conexión exitosa a la BD");
-            const result = await conn.execute(sql, params);
-            conn.release();
-            return result;
-        } catch (error) {
-            console.log(process.env.DB_HOST); // debería imprimir 'localhost'
-            signale.error(error);
-            return null;
-        }
+        // Libera el cliente de vuelta al pool
+        client.release();
+
+        return result;
+    } catch (error) {
+        signale.error(error);
+        return null;
     }
+}
