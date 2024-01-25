@@ -5,7 +5,7 @@ export class GetAllCouponsUseCase{
     constructor(readonly hotelRepository: CouponRepository){}
 
 
-    async getAll():Promise<Coupon[] | null>{
+    async run():Promise<Coupon[] | null>{
         try {
             const listUsers = await this.hotelRepository.getAllCoupons();
             return listUsers; 

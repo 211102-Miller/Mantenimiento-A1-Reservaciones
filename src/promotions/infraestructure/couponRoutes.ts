@@ -2,6 +2,8 @@ import express from 'express';
 import { createCouponController,
     getAllCouponsController,
     getByIdCoontroller,
+    getAllCouponUsagesController,
+    createcouponUsageController
 } from './depencies';
 //import { validateToken } from '../../helpers/verifiqueToken';
 
@@ -19,3 +21,8 @@ CouponRoutes.post("/addCoupon", createCouponController.run.bind(createCouponCont
 CouponRoutes.get("/allCoupon", getAllCouponsController.run.bind(getAllCouponsController));
 
 CouponRoutes.get("/:uuid", getByIdCoontroller.run.bind(getByIdCoontroller))
+
+
+//couponusage
+CouponRoutes.post("/:userUuid/:roomUuid/:couponUuid", createcouponUsageController.run.bind(createcouponUsageController))
+CouponRoutes.get("/:uuid", getAllCouponUsagesController.run.bind(getAllCouponUsagesController));

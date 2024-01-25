@@ -36,6 +36,7 @@
     "jsonwebtoken": "^9.0.2",
     "pg": "^8.11.3",
     "pg-pool": "^3.6.1",
+    "reflect-metadata": "^0.2.1",
     "signale": "^1.4.0",
     "uuid": "^9.0.1"
   }

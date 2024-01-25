@@ -11,3 +11,4 @@ export async function isEmailRegistered(email: string) {
         throw new Error("El correo electrónico ya está registrado en la base de datos.");
     }
 }
+

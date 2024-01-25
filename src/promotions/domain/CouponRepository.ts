@@ -1,4 +1,6 @@
 import { Coupon } from "./coupon";
+import { CouponUsage } from "./couponUsage";
+import { Usercoupon } from "./usercoupon";
 
 export interface CouponRepository{
     createCoupon( 
@@ -13,5 +15,15 @@ export interface CouponRepository{
     getAllCoupons():Promise<Coupon[] | null>
 
     getById(uuid:string):Promise<Coupon | null>
+//coupon usage
+createCouponUsage(
+    uuid: string,
+    userUuid: string,
+    roomUuid: string,
+    couponUuid: string,
+    usage_date: Date
+): Promise<CouponUsage | null | string | Error>;
+
+getAllCouponUsagesByUser(userUuid: string): Promise<Usercoupon[] | null>;
 
 }
